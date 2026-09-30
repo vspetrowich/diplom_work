@@ -60,3 +60,69 @@ pip install -r requirements.txt
 устанавливаем текстовый редактор:
 
 sudo snap install code --classic
+
+2   _____________________________________
+Создаём и перебрасывем файлы в github
+
+git init
+git add README.md
+git add -A
+git commit -m "ADD Django project"
+проверяем:  git remote -v
+У каждого свой созданный репозиторий, у нас в данном случае:
+git remote add origin git@github.com:vspetrowich/diplom_work.git
+git push -u origin master
+__________________________________________
+2 часть создание таблиц БД.
+__________________________________________
+Создаём файл models.py в приложении backend и прописываем модели.
+и
+Вносим дополнения в файл settings.py:
+--------------------------------------
+в файле settings.py
+правим на:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+в конце добавляем:
+
+AUTH_USER_MODEL = 'backend.User'
+
+Проводими миграции:
+python3 manage.py makemigrations
+python3 manage.py migrate
+
+Если прошло без ошибок проверяем:
+
+python manage.py dbshell
+Если не установлен устанавливаем:
+
+sudo apt-get install sqlite3 libsqlite3-dev
+после запуска dbshell проверяем таблицы в БД
+.table
+
+_________________________________________
+Если при попатке обновить миграции из написанной модели models.py
+нужно обнулить миграции и попробовать заново миграции указав явно откуда брать модели:
+
+python3 manage.py makemigrations admin --empty
+python3 manage.py makemigrations backend --empty
+
+python3 manage.py migrate admin zero
+python3 manage.py migrate backend zero
+
+python3 manage.py makemigrations backend
+
+python3 manage.py migrate
+
+И снова проводим проверку:
+_________________________________________
+проверяем статус нашего проекта git и делаем commit, а также копируем измененные файлы проекта в репозиторий:
+
+git status
+git add -A
+git commit -m "Create models project"
+git push -u origin master

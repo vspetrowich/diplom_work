@@ -1,0 +1,133 @@
+shop: Ситилинк
+categories:
+  - id: 20
+    name: Ноутбуки
+  - id: 47
+    name: Холодильники
+  - id: 18
+    name: Проекторы
+
+goods:
+  - id: 2175577
+    category: 18
+    model: INFOCUS/IN0046ST
+    name: Проектор INFOCUS Vista II IN0046ST, DLP, ( белый )
+    price: 75000
+    price_rrc: 78630
+    quantity: 10
+    parameters:
+      "Диагональ (дюйм)": 30-256
+      "Разрешение (пикс)": 1280 x 800
+      "Яркость (lm)": 4300
+      "Цвет": белый
+  - id: 2123083
+    category: 18
+    model: INFOCUS/IN3048SL
+    name: Проектор INFOCUS IN3048SL, LCD, Wi-Fi, ( фиолетовый )
+    price: 22500
+    price_rrc: 24900
+    quantity: 8
+    parameters:
+      "Диагональ (дюйм)": 60-100
+      "Разрешение (пикс)": 1920 x 1080
+      "Яркость (lm)": 200
+      "Цвет": фиолетовый
+  - id: 2083299
+    category: 18
+    model: Acer/X1328WHn
+    name: Проектор Acer X1328WHn, DLP, ( черный )
+    price: 63000
+    price_rrc: 68500
+    quantity: 3
+    parameters:
+      "Диагональ (дюйм)": 27-300
+      "Разрешение (пикс)": 1920 x 1200
+      "Яркость (lm)": 4800
+      "Цвет": черный
+  - id: 1472659
+    category: 47
+    model: Indesit / ITR 4180 W
+    name: Холодильник двухкамерный Indesit ITR 4180 W Total No Frost, (белый)
+    price: 29990
+    price_rrc: 33990
+    quantity: 35
+    parameters:
+      "Объем (л)": 326
+      "Размеры (ШхВхГ)":  60 х 185 х 62 см
+      "Уровень шума (дБ)": 43
+      "Цвет": белый
+      "Система размораживания": No Frost
+  - id: 1472659
+    category: 47
+    model: Indesit / ITR 4180 W
+    name: Холодильник двухкамерный Бирюса Б-M960NF (серебристый металлик)
+    price: 38000
+    price_rrc: 41300
+    quantity: 22
+    parameters:
+      "Объем (л)": 340
+      "Размеры (ШхВхГ)": 60 х 190 х 62.5 см
+      "Уровень шума (дБ)": 43
+      "Цвет": серебристый металлик
+      "Система размораживания": No Frost
+  - id: 1472659
+    category: 47
+    model: HAIER / CBF534AWG
+    name: Холодильник двухкамерный HAIER CBF534AWG (белый)
+    price: 45000
+    price_rrc: 49690
+    quantity: 9
+    parameters:
+      "Объем (л)": 334
+      "Размеры (ШхВхГ)":  59.5 х 200 х 60 см
+      "Уровень шума (дБ)": 43
+      "Цвет": белый
+      "Система размораживания": No Frost
+  - id: 2137216
+    category: 20
+    model: ASUS / TUF Gaming F17 FX707VJB-HX100
+    name: Ноутбук игровой ASUS TUF Gaming F17 FX707VJB-HX100 (черный)
+    price: 129000
+    price_rrc: 109999
+    quantity: 4
+    parameters:
+      "Процессор": Intel Core 5 210H 2.2ГГц
+      "Количество ядер": 8
+      "Оперативная память": 16 ГБ, DDR5, 5600 МГц,SO-DIMM
+      "Цвет": черный
+      "Объем SSD (Гб)": 512
+      "Видеокарта": NVIDIA GeForce RTX 3050 - 6 ГБ
+      "Диагональ (дюйм)": 17.3
+      "Разрешение (пикс)": 1920 х 1080
+  - id: 2187945
+    category: 20
+    model: Apple / MacBook Neo A3404
+    name: Ноутбук Apple MacBook Neo A3404 (желтый)
+    price: 98990
+    price_rrc: 89990
+    quantity: 2
+    parameters:
+      "Процессор": Apple A18 Pro 6 core 3.78ГГц
+      "Количество ядер": 6
+      "Оперативная память": 8 ГБ
+      "Цвет": желтый
+      "Объем SSD (Гб)": 512
+      "Видеокарта": интегрированная
+      "Диагональ (дюйм)": 13
+      "Разрешение (пикс)": 2408 х 1506
+  - id: 2205197
+    category: 20
+    model: Lenovo / IdeaPad Slim 3 15IRU8
+    name: Ноутбук Lenovo IdeaPad Slim 3 15IRU8 (черный)
+    price: 75000
+    price_rrc: 68360
+    quantity: 10
+    parameters:
+      "Процессор": Intel Core i3 1315U 1.2ГГц
+      "Количество ядер": 6
+      "Оперативная память": 8 ГБ, LPDDR5, 4800 МГц
+      "Цвет": черный
+      "Объем SSD (Гб)": 256
+      "Видеокарта": интегрированная
+      "Диагональ (дюйм)": 15.6
+      "Разрешение (пикс)": 1920 х 1080

@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
-from pathlib import Path
+#from pathlib import Path
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -134,10 +134,13 @@ EMAIL_USE_TLS = False
 EMAIL_HOST = 'smtp.yandex.ru'
 
 EMAIL_HOST_USER = 'viaznikov.serg@yandex.ru'
-EMAIL_HOST_PASSWORD = 'ckaebzshzkldufbi'
+EMAIL_HOST_PASSWORD = 'kwmtrzhtktnfiwij'
 EMAIL_PORT = '465'
 EMAIL_USE_SSL = True
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',

@@ -61,17 +61,17 @@ pip install -r requirements.txt
 
 sudo snap install code --classic
 
-2   _____________________________________
+2 _____________________________________
 Создаём и перебрасывем файлы в github
 
-git init
-git add README.md
-git add -A
-git commit -m "ADD Django project"
+- git init
+- git add README.md
+- git add -A
+- git commit -m "ADD Django project"
 проверяем:  git remote -v
 У каждого свой созданный репозиторий, у нас в данном случае:
-git remote add origin git@github.com:vspetrowich/diplom_work.git
-git push -u origin master
+- git remote add origin git@github.com:vspetrowich/diplom_work.git
+- git push -u origin master
 __________________________________________
 2 часть создание таблиц БД.
 __________________________________________
@@ -122,10 +122,10 @@ python3 manage.py migrate
 _________________________________________
 проверяем статус нашего проекта git и делаем commit, а также копируем измененные файлы проекта в репозиторий:
 
-git status
-git add -A
-git commit -m "Create models project"
-git push -u origin master
+- git status
+- git add -A
+- git commit -m "Create models project"
+- git push -u origin master
 __________________________________________
 3. Добавим Админку, Сериализаторы и файлы для импорта товаров в базу.
 - Создадим Админку для удобной работы с данными и пропищем все декораторы в файле admin.py. 
@@ -134,22 +134,22 @@ __________________________________________
 __________________________________________
 проверяем статус нашего проекта git и делаем commit, а также копируем измененные файлы проекта в репозиторий:
 
-git status
-git add -A
-git commit -m "Create admin.py, serializer.py and yaml-files"
-git push -u origin master
+- git status
+- git add -A
+- git commit -m "Create admin.py, serializer.py and yaml-files"
+- git push -u origin master
 ___________________________________________
 4. Прописываем все действия с пользователями:
--Авторизация
--Регистрация
--Отправка на email токена c подтверждением регистрации
--Просмотр данных пользователя и редактирование пользователя.
+- Авторизация
+- Регистрация
+- Отправка на email токена c подтверждением регистрации
+- Просмотр данных пользователя и редактирование пользователя.
 Добавим файл signals.py для обработки сигналов в частности подтверждение адреса почты (e-mail) при регистрации.
 __________________________________________
 проверяем статус нашего проекта git и делаем commit, а также копируем измененные файлы проекта в репозиторий:
 
-git status
-git add -A
-git commit -m "Create functions for work with users and add signals.py"
-git push -u origin master
+- git status
+- git add -A
+- git commit -m "Create functions for work with users and add signals.py"
+- git push -u origin master
 ___________________________________________

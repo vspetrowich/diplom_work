@@ -7,6 +7,7 @@ from django.core.validators import URLValidator
 from django.db import IntegrityError
 from django.http import JsonResponse
 from requests import get
+from django.db.models import Q, Sum, F
 from rest_framework.authtoken.models import Token
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
@@ -263,4 +264,149 @@ class PartnerUpdate(APIView):
 
                 return JsonResponse({'Status': True})
 
+        return JsonResponse({'Status': False, 'Errors': 'Не указаны все необходимые аргументы'})
+
+
+# Просмтр действующих магазинов - списком
+
+class ShopView(ListAPIView):
+
+    queryset = Shop.objects.filter(state=True)
+    serializer_class = ShopSerializer
+
+# Просмтр категорий товаров - списком
+
+class CategoryView(ListAPIView):
+
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class ProductInfoView(APIView):
+
+    def get(self, request: Request, *args, **kwargs):
+        # устанавливаем фильтр только на активные магазины
+        query = Q(shop__state=True)
+        # Извлечение параметров: shop_id и category_id берутся из query-параметров URL
+        shop_id = request.query_params.get('shop_id')
+        category_id = request.query_params.get('category_id')
+        # Если есть в запросе магазин добавляем его в запрос если нет то None
+        if shop_id:
+            query = query & Q(shop_id=shop_id)
+        # Если есть в запросе категория товаров добавляем его в запрос если нет то None
+        if category_id:
+            query = query & Q(product__category_id=category_id)
+
+        # фильтруем и отбрасываем дуликаты
+        queryset = ProductInfo.objects.filter(query).select_related('shop', 'product__category').prefetch_related(
+            'product_parameters__parameter').distinct()
+
+        serializer = ProductInfoSerializer(queryset, many=True)
+
+        return Response(serializer.data)
+
+
+class ContactView(APIView):
+    """
+       A class for managing contact information.
+
+       Methods:
+       - get: Retrieve the contact information of the authenticated user.
+       - post: Create a new contact for the authenticated user.
+       - put: Update the contact information of the authenticated user.
+       - delete: Delete the contact of the authenticated user.
+
+       Attributes:
+       - None
+       """
+
+    # получить мои контакты
+    def get(self, request, *args, **kwargs):
+        """
+               Retrieve the contact information of the authenticated user.
+
+               Args:
+               - request (Request): The Django request object.
+
+               Returns:
+               - Response: The response containing the contact information.
+               """
+        if not request.user.is_authenticated:
+            return JsonResponse({'Status': False, 'Error': 'Log in required'}, status=403)
+        contact = Contact.objects.filter(
+            user_id=request.user.id)
+        serializer = ContactSerializer(contact, many=True)
+        return Response(serializer.data)
+
+    # добавление нового контакт для ползователя
+    def post(self, request, *args, **kwargs):
+
+        if not request.user.is_authenticated:
+            return JsonResponse({'Status': False, 'Error': 'Log in required'}, status=403)
+        """
+        проверяет, содержатся ли все три ключа в словаре - request.data
+        (то есть во входящих данных запроса). Если да — код дальше выполняется.
+        если не все, то выводим: 'Не указаны все необходимые аргументы'
+        """
+        if {'city', 'street', 'phone'}.issubset(request.data):
+            request.data._mutable = True
+            request.data.update({'user': request.user.id})
+            serializer = ContactSerializer(data=request.data)
+
+            if serializer.is_valid():
+                serializer.save()
+                return JsonResponse({'Status': True})
+            else:
+                return JsonResponse({'Status': False, 'Errors': serializer.errors})
+
+        return JsonResponse({'Status': False, 'Errors': 'Не указаны все необходимые аргументы'})
+
+# редактировать контакт
+    def put(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            """
+        Редактируем контакт если он есть в базе
+                    """
+            return JsonResponse({'Status': False, 'Error': 'Log in required'}, status=403)
+
+        if 'id' in request.data:
+            if request.data['id'].isdigit():
+                contact = Contact.objects.filter(id=request.data['id'], user_id=request.user.id).first()
+                print(contact)
+                if contact:
+                    serializer = ContactSerializer(contact, data=request.data, partial=True)
+                    if serializer.is_valid():
+                        serializer.save()
+                        return JsonResponse({'Status': True})
+                    else:
+                        return JsonResponse({'Status': False, 'Errors': serializer.errors})
+
+        return JsonResponse({'Status': False, 'Errors': 'Не указаны все необходимые аргументы'})
+
+# удалить контакт
+    def delete(self, request, *args, **kwargs):
+        """
+        Удаляем контакт пользователя если он есть в БД
+               """
+        if not request.user.is_authenticated:
+            return JsonResponse({'Status': False, 'Error': 'Log in required'}, status=403)
+
+        items_sting = request.data.get('items')   # безопасно извлекаем данные из тела HTTP-запроса под ключом 'items'
+        if items_sting:       # если не пустая
+            items_list = items_sting.split(',')  # делим строку на список
+            query = Q()
+            objects_deleted = False
+            for contact_id in items_list:
+                if contact_id.isdigit():    # проверяем все ли символы в строке исключительно цифровые
+                    """
+                    Если query изначально пустой, создаётся новая Q;
+                    Если в ней уже есть условия, они объединяются с помощью OR
+                     и  устанавливам флаг, что удаление произошло.
+                    """
+                    query = query | Q(user_id=request.user.id, id=contact_id)
+                    objects_deleted = True
+
+            if objects_deleted:
+                deleted_count = Contact.objects.filter(query).delete()[0]
+                return JsonResponse({'Status': True, 'Удалено объектов': deleted_count})
         return JsonResponse({'Status': False, 'Errors': 'Не указаны все необходимые аргументы'})

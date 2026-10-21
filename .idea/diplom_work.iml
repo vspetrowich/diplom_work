@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/orders" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/venv/lib/python3.14/site-packages" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/orders/.venv" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.14 (diplom_work)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

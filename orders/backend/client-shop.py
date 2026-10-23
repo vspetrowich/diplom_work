@@ -885,12 +885,185 @@ session = requests.Session()
 
 # Получаем заказы по партнеру после авторизации и видим что изменился статус заказа
 
+# load_dotenv()
+# user_email2 = os.getenv("EMAIL2")
+# user2_pass = os.getenv("PASS2")
+#
+# response = session.post("http://127.0.0.1:8000/api/v1/user/login",
+#     json={'email': user_email2, "password": user2_pass},
+# )
+# print(response.status_code)
+# print(response.json())
+# token = response.json()['Token']
+# print(token)
+#
+# headers = {
+#     "Authorization": f"Token {token}",
+#     "Accept": "application/json"
+# }
+#
+# print('Печатаем заказы:')
+# response3 = session.get('http://127.0.0.1:8000/api/v1/partner/orders', headers= headers)
+# print(response3.status_code)
+# pprint(response3.json())  # Получаем словарь
+
+# Заказ с нескольких магазинов
+
+# load_dotenv()
+# user_email3 = os.getenv("EMAIL3")
+# user3_pass = os.getenv("PASS3")
+#
+# response = session.post("http://127.0.0.1:8000/api/v1/user/login",
+#     json={'email': user_email3, "password": user3_pass},
+# )
+# print(response.status_code)
+# print(response.json())
+# token = response.json()['Token']
+# print(token)
+#
+# headers = {
+#     "Authorization": f"Token {token}",
+#     "Accept": "application/json"
+# }
+#
+# response2 = session.get('http://127.0.0.1:8000/api/v1/products', headers= headers)
+#
+# print(response2.status_code)
+# pprint(response2.json())  # Получаем словарь
+#
+# response5 = session.get('http://127.0.0.1:8000/api/v1/user/details', headers= headers)
+#
+# print(response5.status_code)
+# print(response5.json())
+#
+# print(response5.json()['id'])
+#
+# print('Печатаем корзину:')
+# response3 = session.get('http://127.0.0.1:8000/api/v1/basket', headers= headers)
+#
+# print(response3.status_code)
+# pprint(response3.json())  # Получаем словарь
+#
+# response4 = session.post('http://127.0.0.1:8000/api/v1/basket', headers= headers,
+#         data = { "items" : '[ { "product_info": 16,  "quantity": 1 },'
+#                             ' { "product_info": 22,  "quantity": 2 } ,'
+#                             ' { "product_info": 26,  "quantity": 1 },'
+#                             ' { "product_info": 31,  "quantity": 1 },'
+#                             ' { "product_info": 36,  "quantity": 1 } ]'
+#                  } )
+#
+#
+# print(response4.status_code)
+# pprint(response4.json())  # Получаем словарь
+#
+# print('Печатаем корзину:')
+# response6 = session.get('http://127.0.0.1:8000/api/v1/basket', headers= headers)
+#
+# print(response6.status_code)
+# pprint(response6.json())  # Получаем словарь
+
+#Теперь подтвердим заказ и сменим статус
+#
+# load_dotenv()
+# user_email3 = os.getenv("EMAIL3")
+# user3_pass = os.getenv("PASS3")
+#
+# response = session.post("http://127.0.0.1:8000/api/v1/user/login",
+#     json={'email': user_email3, "password": user3_pass},
+# )
+# print(response.status_code)
+# print(response.json())
+# token = response.json()['Token']
+# print(token)
+#
+# headers = {
+#     "Authorization": f"Token {token}",
+#     "Accept": "application/json"
+# }
+#
+#
+#
+# response2 = session.get('http://127.0.0.1:8000/api/v1/user/details', headers= headers)
+#
+# print(response2.status_code)
+# print(response2.json())
+# id_cont = response2.json()['contacts'][0]['id']
+# print(id_cont)
+#
+# print('Печатаем заказы:')
+# response5 = session.get('http://127.0.0.1:8000/api/v1/basket', headers= headers)
+# print(response5.status_code)
+# pprint(response5.json())  # Получаем словарь
+# id_ord = response5.json()[0]['id']
+# print(id_ord)
+#
+# print('Меняем статус заказа:')
+# response3 = session.post('http://127.0.0.1:8000/api/v1/order', headers= headers,
+#         data = { "id" : id_ord , 'contact' : id_cont }
+#                          )
+# print(response3.status_code)
+# pprint(response3.json())  # Получаем словарь
+#
+# print('Печатаем заказ с новым статусом:')
+# response4 = session.get('http://127.0.0.1:8000/api/v1/order', headers= headers)
+# print(response4.status_code)
+# pprint(response4.json())  # Получаем словарь
+
+#Теперь просмотрим заказ магазинами
+# # магазин 1
+# load_dotenv()
+# user_email1 = os.getenv("EMAIL1")
+# user1_pass = os.getenv("PASS1")
+#
+# response = session.post("http://127.0.0.1:8000/api/v1/user/login",
+#     json={'email': user_email1, "password": user1_pass},
+# )
+# print(response.status_code)
+# print(response.json())
+# token = response.json()['Token']
+# print(token)
+#
+# headers = {
+#     "Authorization": f"Token {token}",
+#     "Accept": "application/json"
+# }
+#
+# print('Печатаем заказы:')
+# response3 = session.get('http://127.0.0.1:8000/api/v1/partner/orders', headers= headers)
+# print(response3.status_code)
+# pprint(response3.json())  # Получаем словарь
+#
+# # магазин 2
+# load_dotenv()
+# user_email2 = os.getenv("EMAIL2")
+# user2_pass = os.getenv("PASS2")
+#
+# response = session.post("http://127.0.0.1:8000/api/v1/user/login",
+#     json={'email': user_email2, "password": user2_pass},
+# )
+# print(response.status_code)
+# print(response.json())
+# token = response.json()['Token']
+# print(token)
+#
+# headers = {
+#     "Authorization": f"Token {token}",
+#     "Accept": "application/json"
+# }
+#
+# print('Печатаем заказы:')
+# response3 = session.get('http://127.0.0.1:8000/api/v1/partner/orders', headers= headers)
+# print(response3.status_code)
+# pprint(response3.json())  # Получаем словарь
+
+# Получаем заказы покупателя после авторизации со статусом "new"
+
 load_dotenv()
-user_email2 = os.getenv("EMAIL2")
-user2_pass = os.getenv("PASS2")
+user_email3 = os.getenv("EMAIL3")
+user3_pass = os.getenv("PASS3")
 
 response = session.post("http://127.0.0.1:8000/api/v1/user/login",
-    json={'email': user_email2, "password": user2_pass},
+    json={'email': user_email3, "password": user3_pass},
 )
 print(response.status_code)
 print(response.json())
@@ -903,6 +1076,6 @@ headers = {
 }
 
 print('Печатаем заказы:')
-response3 = session.get('http://127.0.0.1:8000/api/v1/partner/orders', headers= headers)
-print(response3.status_code)
-pprint(response3.json())  # Получаем словарь
+response2 = session.get('http://127.0.0.1:8000/api/v1/order', headers= headers)
+print(response2.status_code)
+pprint(response2.json())  # Получаем словарь

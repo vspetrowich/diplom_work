@@ -204,3 +204,17 @@ ____________________________________________________________________
 - git commit -m "Add work with status partner. Add work basket bayer. Add work with orders bayer and shop. "
 - git push -u origin master
 ___________________________________________________________________
+8. Добавили процедуру восстановления и сброса пароля
+
+- reset_password_request_token
+- reset_password_confirm
+
+Проверили работоспособность заказа товаров с нескольких магазинов
+____________________________________________________________________
+проверяем статус нашего проекта git и делаем commit, а также копируем измененные файлы проекта в репозиторий:
+
+- git status
+- git add -A
+- git commit -m "Add functions reset_password. Work order with 2 shops "
+- git push -u origin master
+___________________________________________________________________

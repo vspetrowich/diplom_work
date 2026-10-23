@@ -20,6 +20,7 @@ urlpatterns = [
     path('basket', BasketView.as_view(), name='basket'),
     path('partner/orders', PartnerOrders.as_view(), name='partner-orders'),
     path('order', OrderView.as_view(), name='order'),
-
+    path('user/password_reset', reset_password_request_token, name='password-reset'),
+    path('user/password_reset/confirm', reset_password_confirm, name='password-reset-confirm'),
 
 ]

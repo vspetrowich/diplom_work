@@ -576,9 +576,9 @@ session = requests.Session()
 
 
 #2 Подтверждение e-mail токеном из письма
-
+#
 # response = session.post('http://127.0.0.1:8000/api/v1/user/register/confirm',
-#         json = {"email": "vspetrowich@gmail.com", "token" : 'b5cf22f261906e8' })
+#         json = {"email": "vspetrowich@gmail.com", "token" : 'af82244fd4e6adb626d' })
 # print(response.status_code)
 # print(response.json())
 
@@ -675,8 +675,8 @@ session = requests.Session()
 # pprint(response3.json())  # Получаем словарь
 #
 # response4 = session.post('http://127.0.0.1:8000/api/v1/basket', headers= headers,
-#         data = { "items" : '[ { "product_info": 23,  "quantity": 4 },'
-#                            ' {  "product_info": 20, "quantity": 1 }  ]' } )
+#         data = { "items" : '[ { "product_info": 37,  "quantity": 4 },'
+#                            ' {  "product_info": 34, "quantity": 1 }  ]' } )
 #
 # print(response4.status_code)
 # pprint(response4.json())  # Получаем словарь
@@ -836,7 +836,7 @@ session = requests.Session()
 # print(response2.status_code)
 # pprint(response2.json())  # Получаем словарь
 
-#Пробуем опубликовать заказ из корзины
+# Пробуем опубликовать заказ из корзины
 
 # load_dotenv()
 # user_email3 = os.getenv("EMAIL3")
@@ -883,32 +883,8 @@ session = requests.Session()
 # print(response4.status_code)
 # pprint(response4.json())  # Получаем словарь
 
-# Получаем заказы по партнеру после авторизации и видим что изменился статус заказа
-
-# load_dotenv()
-# user_email2 = os.getenv("EMAIL2")
-# user2_pass = os.getenv("PASS2")
-#
-# response = session.post("http://127.0.0.1:8000/api/v1/user/login",
-#     json={'email': user_email2, "password": user2_pass},
-# )
-# print(response.status_code)
-# print(response.json())
-# token = response.json()['Token']
-# print(token)
-#
-# headers = {
-#     "Authorization": f"Token {token}",
-#     "Accept": "application/json"
-# }
-#
-# print('Печатаем заказы:')
-# response3 = session.get('http://127.0.0.1:8000/api/v1/partner/orders', headers= headers)
-# print(response3.status_code)
-# pprint(response3.json())  # Получаем словарь
-
 # Заказ с нескольких магазинов
-
+#
 # load_dotenv()
 # user_email3 = os.getenv("EMAIL3")
 # user3_pass = os.getenv("PASS3")
@@ -947,9 +923,9 @@ session = requests.Session()
 # response4 = session.post('http://127.0.0.1:8000/api/v1/basket', headers= headers,
 #         data = { "items" : '[ { "product_info": 16,  "quantity": 1 },'
 #                             ' { "product_info": 22,  "quantity": 2 } ,'
-#                             ' { "product_info": 26,  "quantity": 1 },'
-#                             ' { "product_info": 31,  "quantity": 1 },'
-#                             ' { "product_info": 36,  "quantity": 1 } ]'
+#                             ' { "product_info": 3,  "quantity": 1 },'
+#                             ' { "product_info": 5,  "quantity": 1 },'
+#                             ' { "product_info": 10,  "quantity": 1 } ]'
 #                  } )
 #
 #
@@ -1058,24 +1034,71 @@ session = requests.Session()
 
 # Получаем заказы покупателя после авторизации со статусом "new"
 
-load_dotenv()
-user_email3 = os.getenv("EMAIL3")
-user3_pass = os.getenv("PASS3")
+# load_dotenv()
+# user_email3 = os.getenv("EMAIL3")
+# user3_pass = os.getenv("PASS3")
+#
+# response = session.post("http://127.0.0.1:8000/api/v1/user/login",
+#     json={'email': user_email3, "password": user3_pass},
+# )
+# print(response.status_code)
+# print(response.json())
+# token = response.json()['Token']
+# print(token)
+#
+# headers = {
+#     "Authorization": f"Token {token}",
+#     "Accept": "application/json"
+# }
+#
+# print('Печатаем заказы:')
+# response2 = session.get('http://127.0.0.1:8000/api/v1/order', headers= headers)
+# print(response2.status_code)
+# pprint(response2.json())  # Получаем словарь
 
-response = session.post("http://127.0.0.1:8000/api/v1/user/login",
-    json={'email': user_email3, "password": user3_pass},
-)
-print(response.status_code)
-print(response.json())
-token = response.json()['Token']
-print(token)
+#14 регистрируем покупателя
+# 1 Зарегистрировать пользователя и отправить токен на почту
 
-headers = {
-    "Authorization": f"Token {token}",
-    "Accept": "application/json"
-}
 
-print('Печатаем заказы:')
-response2 = session.get('http://127.0.0.1:8000/api/v1/order', headers= headers)
-print(response2.status_code)
-pprint(response2.json())  # Получаем словарь
+#
+# response = session.post(
+#     "http://127.0.0.1:8000/api/v1/user/register",
+#     json={'first_name': 'Igor', 'last_name': 'Petrov','email': "stepfedormining@gmail.com", "password": "Diplom2026@",
+#         'company': 'SIBGUTI', 'position': 'sysadmin',
+#           },
+# )
+#
+# print(response.json())
+
+
+#2 Подтверждение e-mail токеном из письма
+
+# response = session.post('http://127.0.0.1:8000/api/v1/user/register/confirm',
+#         json = {"email": "stepfedormining@gmail.com", "token" : 'ec762977211d9811eef008' })
+# print(response.status_code)
+# print(response.json())
+
+#3 Теперь авторизуемся и получаем данные по Токену.
+
+# load_dotenv()
+# user_email4 = os.getenv("EMAIL4")
+# user4_pass = os.getenv("PASS4")
+#
+# response = session.post(
+#     "http://127.0.0.1:8000/api/v1/user/login",
+#     json={'email': user_email4, "password": user4_pass},
+# )
+# print(response.status_code)
+# print(response.json())
+# token = response.json()['Token']
+# print(token)
+#
+# headers = {
+#     "Authorization": f"Token {token}",
+#     "Accept": "application/json"
+# }
+#
+# response2 = session.get('http://127.0.0.1:8000/api/v1/user/details', headers= headers)
+#
+# print(response2.status_code)
+# print(response2.json())

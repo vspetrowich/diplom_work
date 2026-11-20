@@ -106,6 +106,7 @@ class ConfirmAccount(APIView):
 class AccountDetails(APIView):
     """
     A class for managing user account details.
+    Класс для управления данными учётных записей пользователей.
 
     Methods:
     - get: Retrieve the details of the authenticated user.
@@ -204,6 +205,7 @@ class LoginAccount(APIView):
 class PartnerUpdate(APIView):
     """
     A class for updating partner information.
+    Класс для обновления информации о партнере.
 
     Methods:
     - post: Update the partner information.
@@ -214,16 +216,21 @@ class PartnerUpdate(APIView):
 
     def post(self, request, *args, **kwargs):
         """
-        Добавляем информацию о товарах из файла по ссылке в БД
-              """
-        print('1')
+                Update the partner price list information.
+
+                Args:
+                - request (Request): The Django request object.
+
+                Returns:
+                - JsonResponse: The response indicating the status of the operation and any errors.
+                """
+
         if not request.user.is_authenticated:
             return JsonResponse({'Status': False, 'Error': 'Log in required'}, status=403)
 
         if request.user.type != 'shop':
             return JsonResponse({'Status': False, 'Error': 'Только для магазинов'}, status=403)
-        print('2')
-        print(request.data['url'])
+
         current_dir = os.path.abspath(os.path.dirname(__file__))
         print(f"Текущая директория: {current_dir}")
         url = request.data['url']
@@ -234,7 +241,6 @@ class PartnerUpdate(APIView):
             except ValidationError as e:
                 return JsonResponse({'Status': False, 'Error': str(e)})
             else:
-                print('А до сюда дошли!')
                 stream = get(url).content
 
                 data = load_yaml(stream, Loader=Loader)
@@ -306,17 +312,29 @@ class ProductInfoView(APIView):
 
 class ContactView(APIView):
     """
-    Работаем с контактами:
-- просмотр
-- добавление
-- редактирование
-- удаление
+       A class for managing contact information.
+       Класс для управления контактной информацией.
+
+       Methods:
+       - get: Retrieve the contact information of the authenticated user.
+       - post: Create a new contact for the authenticated user.
+       - put: Update the contact information of the authenticated user.
+       - delete: Delete the contact of the authenticated user.
+
+       Attributes:
+       - None
        """
 
     # получить мои контакты
     def get(self, request, *args, **kwargs):
         """
-             Просматриваем существующие данные в БД
+               Retrieve the contact information of the authenticated user.
+
+               Args:
+               - request (Request): The Django request object.
+
+               Returns:
+               - Response: The response containing the contact information.
                """
         if not request.user.is_authenticated:
             return JsonResponse({'Status': False, 'Error': 'Log in required'}, status=403)
@@ -443,6 +461,7 @@ class PartnerState(APIView):
 class BasketView(APIView):
     """
     A class for managing the user's shopping basket.
+    Класс для управления корзиной покупок пользователя.
 
     Methods:
     - get: Retrieve the items in the user's basket.
@@ -480,34 +499,26 @@ class BasketView(APIView):
 
     def post(self, request, *args, **kwargs):
         """
-        Добавляем товар в корзину веведя прелдварительно список товаров в запросе
+        Добавляем товар в корзину выведя предварительно список товаров в запросе
                """
         if not request.user.is_authenticated:
             return JsonResponse({'Status': False, 'Error': 'Log in required'}, status=403)
-
         items_sting = request.data.get('items')
         if items_sting:
             try:
                 # Проверяем что данные в запросе соответствуют списку товаров
                 items_dict = load_json(items_sting)
-                #print(items_dict)
             except ValueError:
                 return JsonResponse({'Status': False, 'Errors': 'Неверный формат запроса'})
             else:
                 # получаем или создаём корзину для текущего пользователя.
-                #print(request.user.id)
                 basket, _ = Order.objects.get_or_create(user_id=request.user.id, state='basket')
                 objects_created = 0
-                #print(len(items_dict))
                 for order_item in items_dict:
                     order_item.update({'order': basket.id})
                     serializer = OrderItemSerializer(data=order_item)
-                    #print(order_item["product_info"])
-                    #print(serializer)
                     if serializer.is_valid():
                         try:
-                            #print('сюда дошли')
-                            #print(ProductInfo.objects.get(id=order_item["product_info"]))
                             serializer.save()
                         except IntegrityError as error:
                             return JsonResponse({'Status': False, 'Errors': str(error)})
@@ -529,20 +540,16 @@ class BasketView(APIView):
             return JsonResponse({'Status': False, 'Error': 'Log in required'}, status=403)
 
         items_string = request.data.get('items')
-        print(items_string)
         if items_string:
             try:
                 items_dict = load_json(items_string)
-                print(items_dict)
             except ValueError:
                 return JsonResponse({'Status': False, 'Errors': 'Неверный формат запроса'})
             else:
                 basket, _ = Order.objects.get_or_create(user_id=request.user.id, state='basket')
                 objects_updated = 0
                 for order_item in items_dict:
-                    print(order_item)
                     if type(order_item['id']) == int and type(order_item['quantity']) == int:
-                        print('А здесь мы были?')
                         objects_updated += OrderItem.objects.filter(order_id=basket.id, id=order_item['id']).update(
                             quantity=order_item['quantity'])
 
@@ -593,7 +600,6 @@ class PartnerOrders(APIView):
 
         if request.user.type != 'shop':
             return JsonResponse({'Status': False, 'Error': 'Только для магазинов'}, status=403)
-        print('Сюда дошли')
 
         """
              В запросе:
@@ -653,7 +659,7 @@ class OrderView(APIView):
     # разместить заказ из корзины
     def post(self, request, *args, **kwargs):
         """
-        Пытаемся изменит статус заказа
+        Пытаемся изменить статус заказа
                """
         if not request.user.is_authenticated:
             return JsonResponse({'Status': False, 'Error': 'Log in required'}, status=403)

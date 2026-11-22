@@ -22,7 +22,8 @@ from dotenv import load_dotenv
 
 # response = requests.post(
 #     "http://127.0.0.1:8000/api/v1/user/register",
-#     json={'first_name': 'Julia', 'last_name': 'Viaznikova','email': "aum2005@rambler.ru", "password": "Study2026@",
+#     json={'first_name': 'Julia', 'last_name': 'Viaznikova',
+#     'email': "aum2005@rambler.ru", "password": "Study2026@",
 #           'company': 'sitilink', 'position': 'manager', 'type': 'shop'
 #           },
 # )
@@ -36,7 +37,8 @@ session = requests.Session()
 #
 # response = session.post(
 #     "http://127.0.0.1:8000/api/v1/user/register",
-#     json={'first_name': 'Nikolay', 'last_name': 'Viaznikov','email': "cryptoingsvz@gmail.com", "password": "Study2026@",
+#     json={'first_name': 'Nikolay', 'last_name': 'Viaznikov',
+#     'email': "cryptoingsvz@gmail.com", "password": "Study2026@",
 #           'company': 'Ситилинк', 'position': 'Менеджер', 'type' : 'shop'
 #           },
 # )
@@ -47,7 +49,8 @@ session = requests.Session()
 #2 Подтверждение e-mail токеном из письма
 #
 # response = session.post('http://127.0.0.1:8000/api/v1/user/register/confirm',
-#         json = {"email": "cryptoingsvz@gmail.com", "token" : 'e7c2cf5e75fff16717b21d518905033ce72' })
+#         json = {"email": "cryptoingsvz@gmail.com",
+#         "token" : 'e7c2cf5e75fff16717b21d518905033ce72' })
 # print(response.status_code)
 # print(response.json())
 
@@ -144,7 +147,8 @@ session = requests.Session()
 
 # response = session.post(
 #     "http://127.0.0.1:8000/api/v1/user/register",
-#     json={'first_name': 'Liza', 'last_name': 'Viaznikova','email': "eliza.vyaznikova@yandex.ru", "password": "Study2026@",
+#     json={'first_name': 'Liza', 'last_name': 'Viaznikova',
+#     'email': "eliza.vyaznikova@yandex.ru", "password": "Study2026@",
 #           'company': 'Ситилинк', 'position': 'Менеджер', 'type' : 'shop'
 #           },
 # )
@@ -155,7 +159,8 @@ session = requests.Session()
 #6.2 Подтверждение e-mail токеном из письма
 #
 # response = session.post('http://127.0.0.1:8000/api/v1/user/register/confirm',
-#         json = {"email": "eliza.vyaznikova@yandex.ru", "token" : 'cb0b3eb4dde50795c9950399c0b9daa2f60f435d' })
+#         json = {"email": "eliza.vyaznikova@yandex.ru",
+#         "token" : 'cb0b3eb4dde50795c9950399c0b9daa2f60f435d' })
 # print(response.status_code)
 # print(response.json())
 
@@ -352,7 +357,8 @@ session = requests.Session()
 # }
 #
 # response2 = session.post('http://127.0.0.1:8000/api/v1/user/contact', headers= headers,
-#         data={'phone': "89131234567", "city": "Новосибирск", "street": "Дачная", 'house': '25', 'apartment': '33' },
+#         data={'phone': "89131234567", "city": "Новосибирск",
+#         "street": "Дачная", 'house': '25', 'apartment': '33' },
 #                          )
 # print(response2.status_code)
 #
@@ -412,7 +418,8 @@ session = requests.Session()
 # }
 #
 # response2 = session.post('http://127.0.0.1:8000/api/v1/user/contact', headers= headers,
-#         data={'phone': "89239090909", "city": "Омск", "street": "Ленина", 'house': '230', 'building': '3', 'apartment': '105' },
+#         data={'phone': "89239090909", "city": "Омск",
+#         "street": "Ленина", 'house': '230', 'building': '3', 'apartment': '105' },
 #                          )
 # print(response2.status_code)
 #
@@ -422,7 +429,8 @@ session = requests.Session()
 # pprint(response3.json())  # Получаем словарь
 #
 # response4 = session.post('http://127.0.0.1:8000/api/v1/user/contact', headers= headers,
-#         data={'phone': "89608888888", "city": "Омск", "street": "Кирова", 'house': '111',  'apartment': '34' },
+#         data={'phone': "89608888888", "city": "Омск",
+#         "street": "Кирова", 'house': '111',  'apartment': '34' },
 #                          )
 # print(response4.status_code)
 #
@@ -567,7 +575,8 @@ session = requests.Session()
 
 # response = session.post(
 #     "http://127.0.0.1:8000/api/v1/user/register",
-#     json={'first_name': 'Oleg', 'last_name': 'Ivanov','email': "vspetrowich@gmail.com", "password": "Diplom2026@",
+#     json={'first_name': 'Oleg', 'last_name': 'Ivanov',
+#     'email': "vspetrowich@gmail.com", "password": "Diplom2026@",
 #         'company': 'NGTU', 'position': 'sysadmin',
 #           },
 # )
@@ -628,7 +637,8 @@ session = requests.Session()
 # }
 #
 # response2 = session.post('http://127.0.0.1:8000/api/v1/user/contact', headers= headers,
-#         data={'phone': "89234545777", "city": "Бердск", "street": "Ленина", 'house': '14', 'apartment': '12' },
+#         data={'phone': "89234545777", "city": "Бердск",
+#         "street": "Ленина", 'house': '14', 'apartment': '12' },
 #                          )
 # print(response2.status_code)
 #
@@ -884,7 +894,7 @@ session = requests.Session()
 # pprint(response4.json())  # Получаем словарь
 
 # Заказ с нескольких магазинов
-#
+
 # load_dotenv()
 # user_email3 = os.getenv("EMAIL3")
 # user3_pass = os.getenv("PASS3")
@@ -923,9 +933,9 @@ session = requests.Session()
 # response4 = session.post('http://127.0.0.1:8000/api/v1/basket', headers= headers,
 #         data = { "items" : '[ { "product_info": 16,  "quantity": 1 },'
 #                             ' { "product_info": 22,  "quantity": 2 } ,'
-#                             ' { "product_info": 3,  "quantity": 1 },'
-#                             ' { "product_info": 5,  "quantity": 1 },'
-#                             ' { "product_info": 10,  "quantity": 1 } ]'
+#                             ' { "product_info": 26,  "quantity": 1 },'
+#                             ' { "product_info": 31,  "quantity": 1 },'
+#                             ' { "product_info": 36,  "quantity": 1 } ]'
 #                  } )
 #
 #
@@ -939,51 +949,51 @@ session = requests.Session()
 # pprint(response6.json())  # Получаем словарь
 
 #Теперь подтвердим заказ и сменим статус
-#
-# load_dotenv()
-# user_email3 = os.getenv("EMAIL3")
-# user3_pass = os.getenv("PASS3")
-#
-# response = session.post("http://127.0.0.1:8000/api/v1/user/login",
-#     json={'email': user_email3, "password": user3_pass},
-# )
-# print(response.status_code)
-# print(response.json())
-# token = response.json()['Token']
-# print(token)
-#
-# headers = {
-#     "Authorization": f"Token {token}",
-#     "Accept": "application/json"
-# }
-#
-#
-#
-# response2 = session.get('http://127.0.0.1:8000/api/v1/user/details', headers= headers)
-#
-# print(response2.status_code)
-# print(response2.json())
-# id_cont = response2.json()['contacts'][0]['id']
-# print(id_cont)
-#
-# print('Печатаем заказы:')
-# response5 = session.get('http://127.0.0.1:8000/api/v1/basket', headers= headers)
-# print(response5.status_code)
-# pprint(response5.json())  # Получаем словарь
-# id_ord = response5.json()[0]['id']
-# print(id_ord)
-#
-# print('Меняем статус заказа:')
-# response3 = session.post('http://127.0.0.1:8000/api/v1/order', headers= headers,
-#         data = { "id" : id_ord , 'contact' : id_cont }
-#                          )
-# print(response3.status_code)
-# pprint(response3.json())  # Получаем словарь
-#
-# print('Печатаем заказ с новым статусом:')
-# response4 = session.get('http://127.0.0.1:8000/api/v1/order', headers= headers)
-# print(response4.status_code)
-# pprint(response4.json())  # Получаем словарь
+
+load_dotenv()
+user_email3 = os.getenv("EMAIL3")
+user3_pass = os.getenv("PASS3")
+
+response = session.post("http://127.0.0.1:8000/api/v1/user/login",
+    json={'email': user_email3, "password": user3_pass},
+)
+print(response.status_code)
+print(response.json())
+token = response.json()['Token']
+print(token)
+
+headers = {
+    "Authorization": f"Token {token}",
+    "Accept": "application/json"
+}
+
+
+
+response2 = session.get('http://127.0.0.1:8000/api/v1/user/details', headers= headers)
+
+print(response2.status_code)
+print(response2.json())
+id_cont = response2.json()['contacts'][0]['id']
+print(id_cont)
+
+print('Печатаем заказы:')
+response5 = session.get('http://127.0.0.1:8000/api/v1/basket', headers= headers)
+print(response5.status_code)
+pprint(response5.json())  # Получаем словарь
+id_ord = response5.json()[0]['id']
+print(id_ord)
+
+print('Меняем статус заказа:')
+response3 = session.post('http://127.0.0.1:8000/api/v1/order', headers= headers,
+        data = { "id" : id_ord , 'contact' : id_cont }
+                         )
+print(response3.status_code)
+pprint(response3.json())  # Получаем словарь
+
+print('Печатаем заказ с новым статусом:')
+response4 = session.get('http://127.0.0.1:8000/api/v1/order', headers= headers)
+print(response4.status_code)
+pprint(response4.json())  # Получаем словарь
 
 #Теперь просмотрим заказ магазинами
 # # магазин 1
@@ -1063,7 +1073,8 @@ session = requests.Session()
 #
 # response = session.post(
 #     "http://127.0.0.1:8000/api/v1/user/register",
-#     json={'first_name': 'Igor', 'last_name': 'Petrov','email': "stepfedormining@gmail.com", "password": "Diplom2026@",
+#     json={'first_name': 'Igor', 'last_name': 'Petrov',
+#     'email': "stepfedormining@gmail.com", "password": "Diplom2026@",
 #         'company': 'SIBGUTI', 'position': 'sysadmin',
 #           },
 # )

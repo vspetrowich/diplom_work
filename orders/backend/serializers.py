@@ -2,14 +2,16 @@
 # Подключим библиотеку
 from rest_framework import serializers
 # Импортируем модели
-from backend.models import User, Category, Shop, ProductInfo, Product, ProductParameter, OrderItem, Order, Contact
+from backend.models import (User, Category, Shop, ProductInfo, Product, \
+                            ProductParameter, OrderItem, Order, Contact)
 
 # Пропишем сериализоторы для всех моделей
 
 class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
-        fields = ('id', 'city', 'street', 'house', 'structure', 'building', 'apartment', 'user', 'phone')
+        fields = ('id', 'city', 'street', 'house', 'structure',
+                  'building', 'apartment', 'user', 'phone')
         read_only_fields = ('id',)
         extra_kwargs = {
             'user': {'write_only': True}
@@ -21,7 +23,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'first_name', 'last_name', 'email', 'company', 'position', 'type', 'contacts')
+        fields = ('id', 'first_name', 'last_name', 'email',
+                  'company', 'position', 'type', 'contacts')
         read_only_fields = ('id',)
 
 
@@ -61,7 +64,8 @@ class ProductInfoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ProductInfo
-        fields = ('id', 'model', 'product', 'shop', 'quantity', 'price', 'price_rrc', 'product_parameters',)
+        fields = ('id', 'model', 'product', 'shop', 'quantity',
+                  'price', 'price_rrc', 'product_parameters',)
         read_only_fields = ('id',)
 
 
